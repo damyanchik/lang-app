@@ -2,7 +2,7 @@ package language
 
 import (
 	"fmt"
-	"lang-app/app/helpers"
+	"lang-app/app/collections"
 	"strings"
 )
 
@@ -18,7 +18,7 @@ func ChooseLanguage() {
 		fmt.Scan(&chosenLanguage)
 		appLanguage = strings.ToUpper(chosenLanguage)
 
-		if helpers.IsInArray(appLanguage, availableLanguages) {
+		if collections.IsInArray(appLanguage, availableLanguages) {
 			break
 		} else {
 			fmt.Println("#Język został wybrany niepoprawnie, spróbuj ponownie!")

@@ -1,4 +1,4 @@
-package helpers
+package collections
 
 func IsInArray(str string, array []string) bool {
 	for _, element := range array {
@@ -9,8 +9,8 @@ func IsInArray(str string, array []string) bool {
 	return false
 }
 
-func SearchKeyInMap(str string, collection map[string]string) bool {
-	for key, _ := range collection {
+func IsKeyInMap(str string, collection map[string]string) bool {
+	for key := range collection {
 		if key == str {
 			return true
 		}
@@ -18,7 +18,7 @@ func SearchKeyInMap(str string, collection map[string]string) bool {
 	return false
 }
 
-func SearchValueInMap(str string, collection map[string]string) bool {
+func IsValueInMap(str string, collection map[string]string) bool {
 	for _, value := range collection {
 		if value == str {
 			return true

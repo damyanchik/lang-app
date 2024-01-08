@@ -2,7 +2,7 @@ package vocabulary
 
 import (
 	"fmt"
-	"lang-app/app/helpers"
+	"lang-app/app/collections"
 )
 
 const Ready = "/ready"
@@ -10,7 +10,8 @@ const Ready = "/ready"
 var vocabularies = make(map[string]string)
 
 func Process() map[string]string {
-	for {
+	for len(vocabularies) < 20 {
+
 		key := enterWord()
 
 		if key == Ready {
@@ -25,7 +26,8 @@ func Process() map[string]string {
 
 		vocabularies[key] = value
 
-		fmt.Printf("#Słowo '%v' i tłumecznie '%v' zostało dodane! Dodaj kolejne lub wpisz /ready\n", key, value)
+		fmt.Printf("\n#Słowo '%v' i tłumecznie '%v' zostało dodane! Możesz dodać jeszcze %v słówek.\n", key, value, 20-len(vocabularies))
+		fmt.Println("Dodaj kolejne słówko lub wpisz /ready, aby zakończyć")
 	}
 
 	return vocabularies
@@ -38,7 +40,7 @@ func enterWord() string {
 		println("\n#Podaj słowo do nauczenia:")
 		fmt.Scan(&key)
 
-		if helpers.SearchKeyInMap(key, vocabularies) {
+		if collections.IsKeyInMap(key, vocabularies) {
 			println("!!! Podane słówko było już podane wcześniej! Podaj inne. !!!")
 			continue
 		}

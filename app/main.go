@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
+	"lang-app/app/collections"
 	"lang-app/app/language"
 	"lang-app/app/user"
 	"lang-app/app/vocabulary"
 )
-
-var userName string
 
 func main() {
 
@@ -19,13 +18,9 @@ func main() {
 
 	if len(vocabularies) == 0 {
 		fmt.Println("#Brak słówek do nauczenia, koniec działania programu.")
+		return
 	} else {
 		fmt.Println("#Zakończono dodawanie słówek, oto twoja lista: (SŁOWO - TŁUMACZENIE)")
-		i := 1
-		for key, value := range vocabularies {
-			fmt.Printf("%v: %v - %v\n", i, key, value)
-			i++
-		}
+		collections.PrintMap(vocabularies)
 	}
-
 }
