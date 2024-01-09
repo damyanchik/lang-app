@@ -12,7 +12,7 @@ type Vocabulary struct {
 	vocabularies map[string]string
 }
 
-func CreateVocabulary() Vocabulary {
+func NewVocabulary() Vocabulary {
 	v := Vocabulary{
 		vocabularies: make(map[string]string),
 	}
@@ -87,6 +87,7 @@ func (v *Vocabulary) addVocabulary(key string, value string) {
 func (v *Vocabulary) showResult() {
 	fmt.Println("#Zakończono dodawanie słówek, oto twoja lista: (SŁOWO - TŁUMACZENIE)")
 	collections.PrintMap(v.GetVocabularies())
+	fmt.Printf("\n, \n, \n")
 }
 
 func (v *Vocabulary) isReady(input string) bool {

@@ -18,12 +18,12 @@ type Repetition struct {
 	displayMode   string
 }
 
-func CreateRepetition(vocabularies vocabulary.Vocabulary, displayMode string) Repetition {
+func NewRepetition(vocabularies vocabulary.Vocabulary) Repetition {
 	return Repetition{
 		vocabularies:  vocabularies,
 		countedPoints: 0,
 		countedRounds: 0,
-		displayMode:   displayMode,
+		displayMode:   "none",
 	}
 }
 
@@ -31,7 +31,8 @@ func (r *Repetition) SetDisplayMode(displayMode string) {
 	r.displayMode = displayMode
 }
 
-func (r *Repetition) GetCountedPoints() int {
+func (r *Repetition) ShowPoints() int {
+	fmt.Printf("\nTWOJE PUNKTY: %v na %v \n\n", r.countedPoints, len(r.vocabularies.GetVocabularies()))
 	return r.countedPoints
 }
 

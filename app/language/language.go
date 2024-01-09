@@ -7,29 +7,43 @@ import (
 )
 
 const (
-	EN = "EN"
+	//EN = "EN"
 	PL = "PL"
-	RU = "RU"
+	//RU = "RU"
 )
 
-var appLanguage string
-var availableLanguages = []string{EN, PL, RU}
+type AppLanguage struct {
+	availableLanguages []string
+	chosenLanguage     string
+}
 
-func ChooseLanguage() string {
-	fmt.Printf("#Wybierz język aplikacji: %v \n", availableLanguages)
+func NewAppLanguage() AppLanguage {
+	a := AppLanguage{
+		availableLanguages: []string{PL},
+	}
 
+	fmt.Printf("#Wybierz język aplikacji: %v \n", a.availableLanguages)
+	a.chooseLanguage()
+
+	return a
+}
+
+func (a *AppLanguage) GetChosenLanguage() string {
+	return a.chosenLanguage
+}
+
+func (a *AppLanguage) chooseLanguage() {
 	for {
-		var chosenLanguage string
+		var inputedLanguage string
 
-		fmt.Scan(&chosenLanguage)
-		appLanguage = strings.ToUpper(chosenLanguage)
+		fmt.Scan(&inputedLanguage)
+		appLanguage := strings.ToUpper(inputedLanguage)
 
-		if collections.IsInArray(appLanguage, availableLanguages) {
+		if collections.IsInArray(appLanguage, a.availableLanguages) {
+			a.chosenLanguage = appLanguage
 			break
 		} else {
 			fmt.Println("#Język został wybrany niepoprawnie, spróbuj ponownie!")
 		}
 	}
-
-	return appLanguage
 }

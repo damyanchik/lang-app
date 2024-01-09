@@ -8,14 +8,12 @@ import (
 	"lang-app/app/vocabulary"
 )
 
-var AppLanguage string
-
 func main() {
-	AppLanguage = language.ChooseLanguage()
+	language.NewAppLanguage()
 	user.GreetUser()
 	user.ShowInstruction()
 
-	newVocabulary := vocabulary.CreateVocabulary()
+	newVocabulary := vocabulary.NewVocabulary()
 	newVocabulary.GetVocabularies()
 
 	if len(newVocabulary.GetVocabularies()) == 0 {
@@ -23,21 +21,12 @@ func main() {
 		return
 	}
 
-	//first round
-	newRepetition := repetition.CreateRepetition(newVocabulary, repetition.KeyOnly)
-	newRepetition.StartRound()
+	newRepetition := repetition.NewRepetition(newVocabulary)
+	for _, roundType := range [3]string{repetition.KeyOnly, repetition.ValueOnly, repetition.Mix} {
+		newRepetition.SetDisplayMode(roundType)
+		newRepetition.StartRound()
+		newRepetition.ShowPoints()
+	}
 
-	fmt.Printf("\nTWOJE PUNKY: %v \n", newRepetition.GetCountedPoints())
-
-	//second round
-	newRepetition.SetDisplayMode(repetition.ValueOnly)
-	newRepetition.StartRound()
-	fmt.Printf("\nTWOJE PUNKY: %v \n", newRepetition.GetCountedPoints())
-
-	//third round
-	newRepetition.SetDisplayMode(repetition.Mix)
-	newRepetition.StartRound()
-
-	fmt.Println("KONIEC")
-	fmt.Printf("\nZDOBYŁEŚ ŁĄCZNIE: %v \n", newRepetition.GetCountedPoints())
+	fmt.Println("KONIEC!")
 }
