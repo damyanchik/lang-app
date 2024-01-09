@@ -12,13 +12,13 @@ const (
 )
 
 type Repetition struct {
-	vocabularies  map[string]string
+	vocabularies  vocabulary.Vocabulary
 	countedPoints int
 	countedRounds int
 	displayMode   string
 }
 
-func CreateRepetition(vocabularies map[string]string, displayMode string) Repetition {
+func CreateRepetition(vocabularies vocabulary.Vocabulary, displayMode string) Repetition {
 	return Repetition{
 		vocabularies:  vocabularies,
 		countedPoints: 0,
@@ -38,8 +38,8 @@ func (r *Repetition) GetCountedPoints() int {
 func (r *Repetition) StartRound() {
 	isKey := true
 	r.countRounds()
-	for _, key := range vocabulary.GetRandomVocabulariesOrder(r.vocabularies) {
-		value := r.vocabularies[key]
+	for _, key := range r.vocabularies.GetRandomVocabulariesOrder() {
+		value := r.vocabularies.GetVocabularies()[key]
 
 		switch r.displayMode {
 		case KeyOnly:

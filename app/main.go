@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"lang-app/app/collections"
 	"lang-app/app/language"
 	"lang-app/app/repetition"
 	"lang-app/app/user"
@@ -16,18 +15,17 @@ func main() {
 	user.GreetUser()
 	user.ShowInstruction()
 
-	vocabularies := vocabulary.Preparation()
+	newVocabulary := vocabulary.CreateVocabulary(20)
+	newVocabulary.GetVocabularies()
 
-	if len(vocabularies) == 0 {
+	if len(newVocabulary.GetVocabularies()) == 0 {
 		fmt.Println("#Brak słówek do nauczenia, koniec działania programu.")
 		return
 	}
 
-	vocabularyInformation(vocabularies)
-
 	//first round
 	fmt.Println("## Runda pierwsza ##")
-	newRepetition := repetition.CreateRepetition(vocabularies, repetition.KeyOnly)
+	newRepetition := repetition.CreateRepetition(newVocabulary, repetition.KeyOnly)
 	newRepetition.StartRound()
 
 	fmt.Printf("\nTWOJE PUNKY: %v \n", newRepetition.GetCountedPoints())
@@ -43,11 +41,4 @@ func main() {
 
 	fmt.Println("KONIEC")
 	fmt.Printf("\nZDOBYŁEŚ ŁĄCZNIE: %v \n", newRepetition.GetCountedPoints())
-
-}
-
-func vocabularyInformation(vocabularies map[string]string) {
-	fmt.Println("#Zakończono dodawanie słówek, oto twoja lista: (SŁOWO - TŁUMACZENIE)")
-	collections.PrintMap(vocabularies)
-	fmt.Println("#Teraz poczekaj chwilę, zaraz rozpoczniemy naukę! Przed nami trzy rundy.")
 }

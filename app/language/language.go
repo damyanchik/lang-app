@@ -6,11 +6,17 @@ import (
 	"strings"
 )
 
+const (
+	EN = "EN"
+	PL = "PL"
+	RU = "RU"
+)
+
 var appLanguage string
+var availableLanguages = []string{EN, PL, RU}
 
 func ChooseLanguage() string {
-	availableLanguages := []string{"EN", "PL", "RU"}
-	fmt.Println("#Wybierz język aplikacji: (EN / PL / RU)")
+	fmt.Printf("#Wybierz język aplikacji: %v \n", availableLanguages)
 
 	for {
 		var chosenLanguage string
