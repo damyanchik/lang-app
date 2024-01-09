@@ -9,7 +9,7 @@ const Ready = "/ready"
 
 var vocabularies = make(map[string]string)
 
-func Process() map[string]string {
+func Preparation() map[string]string {
 	for len(vocabularies) < 20 {
 
 		key := enterWord()
