@@ -9,9 +9,15 @@ const Ready = "/ready"
 
 var vocabularies = make(map[string]string)
 
+func GetRandomVocabulariesOrder(vocabularies map[string]string) []string {
+	keyCollection := collections.MapKeysToSlice(vocabularies)
+	newCollectionOrder := collections.RandomOrderInSlice(keyCollection)
+
+	return newCollectionOrder
+}
+
 func Preparation() map[string]string {
 	for len(vocabularies) < 20 {
-
 		key := enterWord()
 
 		if key == Ready {

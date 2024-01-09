@@ -8,7 +8,7 @@ import (
 
 var appLanguage string
 
-func ChooseLanguage() {
+func ChooseLanguage() string {
 	availableLanguages := []string{"EN", "PL", "RU"}
 	fmt.Println("#Wybierz język aplikacji: (EN / PL / RU)")
 
@@ -24,4 +24,6 @@ func ChooseLanguage() {
 			fmt.Println("#Język został wybrany niepoprawnie, spróbuj ponownie!")
 		}
 	}
+
+	return appLanguage
 }
