@@ -5,16 +5,16 @@ import (
 	"lang-app/app/collections"
 )
 
+const WordLimit = 20
 const Ready = "/ready"
 
 type Vocabulary struct {
 	vocabularies map[string]string
-	wordLimit    int
 }
 
-func CreateVocabulary(wordLimit int) Vocabulary {
+func CreateVocabulary() Vocabulary {
 	v := Vocabulary{
-		wordLimit: wordLimit,
+		vocabularies: make(map[string]string),
 	}
 	v.preparationVocabularies()
 
@@ -33,7 +33,7 @@ func (v *Vocabulary) GetRandomVocabulariesOrder() []string {
 }
 
 func (v *Vocabulary) preparationVocabularies() {
-	for len(v.vocabularies) < v.wordLimit {
+	for len(v.vocabularies) < WordLimit {
 		key := v.enterWord()
 
 		if v.isReady(key) {
@@ -48,7 +48,7 @@ func (v *Vocabulary) preparationVocabularies() {
 
 		v.addVocabulary(key, value)
 	}
-	v.vocabularyInformation()
+	v.showResult()
 }
 
 func (v *Vocabulary) enterWord() string {
@@ -80,11 +80,11 @@ func (v *Vocabulary) enterTranslation() string {
 
 func (v *Vocabulary) addVocabulary(key string, value string) {
 	v.vocabularies[key] = value
-	fmt.Printf("\n#Słowo '%v' i tłumecznie '%v' zostało dodane! Możesz dodać jeszcze %v słówek.\n", key, value, 20-len(v.vocabularies))
+	fmt.Printf("\n#Słowo '%v' i tłumecznie '%v' zostało dodane! Możesz dodać jeszcze %v słówek.\n", key, value, 20-len(v.GetVocabularies()))
 	fmt.Println("Dodaj kolejne słówko lub wpisz /ready, aby zakończyć")
 }
 
-func (v *Vocabulary) vocabularyInformation() {
+func (v *Vocabulary) showResult() {
 	fmt.Println("#Zakończono dodawanie słówek, oto twoja lista: (SŁOWO - TŁUMACZENIE)")
 	collections.PrintMap(v.GetVocabularies())
 }

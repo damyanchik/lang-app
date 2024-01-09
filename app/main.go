@@ -15,7 +15,7 @@ func main() {
 	user.GreetUser()
 	user.ShowInstruction()
 
-	newVocabulary := vocabulary.CreateVocabulary(20)
+	newVocabulary := vocabulary.CreateVocabulary()
 	newVocabulary.GetVocabularies()
 
 	if len(newVocabulary.GetVocabularies()) == 0 {
@@ -24,7 +24,6 @@ func main() {
 	}
 
 	//first round
-	fmt.Println("## Runda pierwsza ##")
 	newRepetition := repetition.CreateRepetition(newVocabulary, repetition.KeyOnly)
 	newRepetition.StartRound()
 
