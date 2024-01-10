@@ -2,7 +2,7 @@ package vocabulary
 
 import (
 	"fmt"
-	"lang-app/app/collections"
+	"lang-app/pkg/collections"
 )
 
 const WordLimit = 20

@@ -2,7 +2,7 @@ package language
 
 import (
 	"fmt"
-	"lang-app/app/collections"
+	"lang-app/pkg/collections"
 	"strings"
 )
 

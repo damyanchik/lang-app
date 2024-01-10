@@ -2,7 +2,7 @@ package repetition
 
 import (
 	"fmt"
-	"lang-app/app/vocabulary"
+	"lang-app/pkg/vocabulary"
 )
 
 const (
@@ -32,7 +32,7 @@ func (r *Repetition) SetDisplayMode(displayMode string) {
 }
 
 func (r *Repetition) ShowPoints() int {
-	fmt.Printf("\nTWOJE PUNKTY: %v na %v \n\n", r.countedPoints, len(r.vocabularies.GetVocabularies()))
+	fmt.Printf("\nTWOJE PUNKTY: %v na %v \n\n", r.countedPoints, len(r.vocabularies.GetVocabularies())*r.countedRounds)
 	return r.countedPoints
 }
 

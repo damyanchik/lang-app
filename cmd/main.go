@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
-	"lang-app/app/language"
-	"lang-app/app/repetition"
-	"lang-app/app/user"
-	"lang-app/app/vocabulary"
+	"lang-app/pkg/language"
+	"lang-app/pkg/repetition"
+	"lang-app/pkg/user"
+	"lang-app/pkg/vocabulary"
+	"time"
 )
 
 func main() {
 	language.NewAppLanguage()
-	user.GreetUser()
-	user.ShowInstruction()
+	user.NewUser()
+	ShowInstruction()
 
 	newVocabulary := vocabulary.NewVocabulary()
 	newVocabulary.GetVocabularies()
@@ -29,4 +30,11 @@ func main() {
 	}
 
 	fmt.Println("KONIEC!")
+}
+
+func ShowInstruction() {
+	time.Sleep(2 * time.Second)
+	fmt.Println("\n## INSTRUKCJA ##")
+	fmt.Println("#Najpierw zapisz słowo w języku obcym, którego się uczysz, a następnie podaj jego tłumaczenie.")
+	fmt.Printf("#Możesz podać maksymalnie %v słówek. \n", vocabulary.WordLimit)
 }
